@@ -75,11 +75,11 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <div className="flex items-center justify-between gap-2 px-6 lg:py-6">
                 <Link href={"/"}>
                     <div className="flex flex-row items-center justify-center space-x-2">
-                        <div className="ml-2 rounded-lg bg-[#3C4FE0] p-1">
+                        <div className="ml-2 rounded-lg bg-[#3C4FE0] p-1.5">
                             <Image
-                                width={32}
-                                height={32}
-                                src={"/images/logo/dna.svg"}
+                                width={30}
+                                height={30}
+                                src={"/images/logo/logo.svg"}
                                 alt="logo"
                                 priority
                             />
