@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 type SetValue<T> = T | ((val: T) => T);
 
-export function useLocalStorage<T>(
+export function UseLocalStorage<T>(
     key: string,
     initialValue: T,
 ): [T, (value: SetValue<T>) => void] {

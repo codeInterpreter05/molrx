@@ -13,7 +13,7 @@ import {
     MessageSquareText, 
     X
 } from "lucide-react"
-import { useLocalStorage } from "@/hooks/UseLocalStorage"
+import { UseLocalStorage } from "@/hooks/UseLocalStorage"
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -66,7 +66,7 @@ const menuGroups = [
 export const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     const pathname = usePathname();
 
-    const [pageName, setPageName] = useLocalStorage('selectedMenu', 'dashboard');
+    const [pageName, setPageName] = UseLocalStorage('selectedMenu', 'dashboard');
 
     return (
         <aside className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-[#000000] lg:translate-x-0 ${
