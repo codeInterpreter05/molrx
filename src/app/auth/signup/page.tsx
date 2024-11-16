@@ -139,17 +139,17 @@ const SignUp: React.FC = () => {
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="px-26 py-17.5 text-center">
               <Link className="mb-5.5 inline-block" href="/">
-                <div className="flex flex-row items-center justify-center space-x-2">
+                <div className="flex flex-row items-center justify-center space-x-2.5">
                   <div className="ml-3 rounded-lg bg-[#3c4fe0] p-1">
                     <Image
-                      width={32}
-                      height={32}
-                      src={"/images/logo/dna.svg"}
+                      width={40}
+                      height={40}
+                      src={"/images/logo/logo.svg"}
                       alt="Logo"
                       priority
                     />
                   </div>
-                  <p className="text-xl font-semibold text-black">
+                  <p className="text-4xl font-semibold text-black">
                     MolRx
                   </p>
                 </div>
@@ -455,7 +455,7 @@ const SignUp: React.FC = () => {
                 <div className="mt-6 text-center">
                   <p>
                     Already have an account?{" "}
-                    <Link href="/auth-page/signin" className="text-primary">
+                    <Link href="/auth/signin" className="text-primary">
                       Sign in
                     </Link>
                   </p>
