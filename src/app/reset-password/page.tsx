@@ -39,7 +39,7 @@ const ResetPasswordPage: React.FC = () => {
 
       setSuccess(true);
       setTimeout(() => {
-        router.push("/auth-page/signin");
+        router.push("/auth/signin");
       }, 3000);
     } catch (err: any) {
       setError("Something went wrong. Please try again.");

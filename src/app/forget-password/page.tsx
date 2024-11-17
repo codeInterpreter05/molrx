@@ -60,9 +60,7 @@ const ForgetPasswordPage: React.FC = () => {
             </p>
             <form onSubmit={handleSubmit} className="mx-auto max-w-md">
               <div className="mb-4">
-                <label className="mb-2 block font-medium text-black dark:text-white">
-                  Email
-                </label>
+          
                 <div className="relative">
                   <input
                     type="email"
@@ -103,7 +101,7 @@ const ForgetPasswordPage: React.FC = () => {
               inbox.
             </p>
             <button
-              onClick={() => router.push("/auth-page/signin")}
+              onClick={() => router.push("/auth/signin")}
               className="mt-4 rounded-lg bg-primary p-3 text-white"
             >
               Go to Sign In
