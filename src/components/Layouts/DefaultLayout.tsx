@@ -3,6 +3,8 @@
 import React, { useState, useLayoutEffect } from "react"
 import { Sidebar } from "../Sidebar";
 import { Header } from "../Header";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function DefaultLayout({ 
     children, 
@@ -10,7 +12,26 @@ export default function DefaultLayout({
     children: React.ReactNode; 
 }) {
 
-    const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const {data: session, status} = useSession();
+
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const publicRoutes = [
+        "/auth/signin",
+        "/auth/signup",
+        "/verify-email",
+        "/reset-password",
+        "/forgot-password",
+    ];
+
+    useLayoutEffect(() => {
+        if (status === "unauthenticated" && !publicRoutes.includes(pathname)) {
+            router.push("/auth/signin");
+        } 
+    }, [status, router, publicRoutes]);
+
     return (
         <div className="flex">
             <Sidebar 

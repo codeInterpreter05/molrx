@@ -34,12 +34,14 @@ const SignUp: React.FC = () => {
     const { name, value } = e.target;
     setUser((prev) => ({
       ...prev,
-      [name]: value, // Ensure the value is treated as a string
+      [name]: value, 
     }));
+
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
+    const file = e.target.files ? e.target.files[0].name : null;
+    
     setImageFile(file);
   };
 
@@ -395,7 +397,7 @@ const SignUp: React.FC = () => {
                   </label>
                   <div className="relative">
                     <textarea
-                      name="bio"
+                      name="userBio"
                       value={user.userBio}
                       onChange={handleInputChange}
                       placeholder="Enter your bio"
@@ -413,7 +415,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={handleFileChange}
+                      onChange={(e) => handleFileChange(e)}
                       className="hidden"
                       id="fileInput"
                     />
@@ -432,6 +434,7 @@ const SignUp: React.FC = () => {
                       </span>
                     </div>
                   </div>
+                  {imageFile && <p>File selected: {imageFile.name}</p>}
                 </div>
 
                 {errors && <div className="mb-4 text-red">{errors}</div>}
