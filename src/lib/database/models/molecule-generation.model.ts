@@ -30,7 +30,7 @@ const MoleculeGenerationHistorySchema = new Schema(
     ],
     user: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "User", // Reference to the user model
       required: true,
     },
     createdAt: {

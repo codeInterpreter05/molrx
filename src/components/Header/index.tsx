@@ -1,11 +1,11 @@
 import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownMessage from "./DropdownMessage";
-import { DropdownUser } from "./DropdownUser";
+import DropdownUser from "./DropdownUser";
 import Image from "next/image";
 import { SearchIcon } from "lucide-react";
 
-export const Header = (props: {
+const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
@@ -82,3 +82,5 @@ export const Header = (props: {
     </header>
   );
 };
+
+export default Header;

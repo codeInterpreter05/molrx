@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import MoleculeGenerationHistory from "../database/models/molecule-generation.model";
-import { ConnectToDB } from "../database/mongoose";
+import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 import mongoose from "mongoose";
 
@@ -11,7 +11,7 @@ export async function createMoleculeGenerationHistory(
   userId: string,
 ) {
   try {
-    await ConnectToDB();
+    await connectToDatabase();
 
     const newHistoryEntry = await MoleculeGenerationHistory.create({
       ...payload,
@@ -27,7 +27,7 @@ export async function createMoleculeGenerationHistory(
 
 export async function getMoleculeGenerationHistoryByUser(userId: string) {
   try {
-    await ConnectToDB();
+    await connectToDatabase();
 
     const historyEntries = await MoleculeGenerationHistory.find({
       user: userId,
@@ -42,7 +42,7 @@ export async function getMoleculeGenerationHistoryByUser(userId: string) {
 
 export async function getMoleculeGenerationHistoryById(historyId: string) {
   try {
-    await ConnectToDB();
+    await connectToDatabase();
 
     const historyEntry = await MoleculeGenerationHistory.findById(historyId);
     if (!historyEntry) throw new Error("History entry not found");
@@ -56,7 +56,7 @@ export async function getMoleculeGenerationHistoryById(historyId: string) {
 
 export async function deleteMoleculeGenerationHistory(entryId: string) {
   try {
-    await ConnectToDB();
+    await connectToDatabase();
 
     const deletedEntry =
       await MoleculeGenerationHistory.findByIdAndDelete(entryId);

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { LoaderCircle, LockIcon } from "lucide-react";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import Breadcrumb from "@/components/ComponentHeader";
+import Breadcrumb from "@/components/ComponentHeader/ComponentHeader";
 import { useRouter, useSearchParams } from "next/navigation";
-import { resetPassword } from "@/lib/actions/user.action";
+import { resetPassword } from "@/lib/actions/user.actions";
 
 const ResetPasswordPage: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -39,7 +39,7 @@ const ResetPasswordPage: React.FC = () => {
 
       setSuccess(true);
       setTimeout(() => {
-        router.push("/auth/signin");
+        router.push("/auth-page/signin");
       }, 3000);
     } catch (err: any) {
       setError("Something went wrong. Please try again.");

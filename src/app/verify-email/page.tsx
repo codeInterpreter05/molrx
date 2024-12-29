@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { verifyEmail } from "@/lib/actions/user.action";
+import { verifyEmail } from "@/lib/actions/user.actions";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { CircleCheckBig } from "lucide-react";
 
@@ -47,7 +47,7 @@ const VerifyEmailPage: React.FC = () => {
         )}
         {status === "success" && (
           <button
-            onClick={() => router.push("/auth/signin")}
+            onClick={() => router.push("/auth-page/signin")}
             className="mt-4 rounded-lg bg-primary p-3 text-white"
           >
             Go to Sign In

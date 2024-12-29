@@ -1,11 +1,11 @@
 import Index from "@/components/Dashboard";
+import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-import { Metadata } from "next";
-
 export const metadata: Metadata = {
-  title: "MolRx - Drug Research Platform",
-  description: "A platform for sharing and discussing drug discovery and development",
+  title:
+    "Next.js E-commerce Dashboard | TailAdmin - Next.js Dashboard Template",
+  description: "This is Next.js Home for TailAdmin Dashboard Template",
 };
 
 export default function Home() {
@@ -17,5 +17,3 @@ export default function Home() {
     </>
   );
 }
-
-
