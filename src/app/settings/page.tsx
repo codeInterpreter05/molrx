@@ -1,9 +1,8 @@
 "use client";
 import Breadcrumb from "@/components/ComponentHeader/ComponentHeader";
-import Image from "next/image";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
-import { Edit, MailIcon, CameraIcon, User } from "lucide-react";
+import { Edit, MailIcon, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import { getUserByEmail, updateUser } from "@/lib/actions/user.actions";
@@ -15,10 +14,8 @@ const Settings = () => {
     lastName: "",
     email: "",
     userBio: "",
-    photo: "",
     id: "",
   });
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -31,7 +28,6 @@ const Settings = () => {
           lastName: user.lastName,
           email: user.email,
           userBio: user.userBio || "",
-          photo: user.photo || "/images/user/user-03.png",
           id: user._id,
         });
       }
@@ -51,7 +47,6 @@ const Settings = () => {
         firstName: userData.firstName,
         lastName: userData.lastName,
         userBio: userData.userBio,
-        photo: userData.photo,
         email: userData.email,
       };
 
@@ -77,15 +72,10 @@ const Settings = () => {
     setIsLoading(true);
 
     try {
-      let base64Image = userData.photo;
-      if (imageFile) {
-        base64Image = await convertImageToBase64(imageFile);
-      }
 
       if (userData.id) {
         const updatedUser = {
           ...userData,
-          photo: base64Image,
         };
         const updated = await updateUser(userData.id, updatedUser);
         setUserData(updated);
@@ -94,8 +84,6 @@ const Settings = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      setErrors("Failed to upload image.");
-      console.error("Error uploading image:", error);
     }
   };
 
@@ -120,7 +108,6 @@ const Settings = () => {
 
   const handleFileChange = (e: any) => {
     if (e.target.files && e.target.files[0]) {
-      setImageFile(e.target.files[0]);
       setUserData((prevData) => ({
         ...prevData,
         photo: URL.createObjectURL(e.target.files[0]),
@@ -242,93 +229,7 @@ const Settings = () => {
           </div>
 
           {/* Image Upload Form */}
-          <div className="col-span-5 xl:col-span-2">
-            <div className="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-              <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Your Photo
-                </h3>
-              </div>
-              <div className="p-7">
-                <form onSubmit={handleImageUploadSubmit}>
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="h-14 w-14 rounded-full">
-                      <Image
-                        src={userData.photo}
-                        width={55}
-                        height={55}
-                        alt="User"
-                        className="rounded-full"
-                      />
-                    </div>
-                    <div>
-                      <span className="mb-1.5 text-black dark:text-white">
-                        Edit your photo
-                      </span>
-                      <span className="flex gap-2.5">
-                        <button
-                          type="button"
-                          className="text-sm hover:text-primary"
-                          onClick={() => setImageFile(null)}
-                        >
-                          Delete
-                        </button>
-                        <button
-                          type="button"
-                          className="text-sm hover:text-primary"
-                          onClick={() => {
-                            document.getElementById("fileInput")?.click();
-                          }}
-                        >
-                          Update
-                        </button>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div
-                    id="FileUpload"
-                    className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded-lg border border-dashed border-primary bg-gray px-4 py-4 dark:bg-meta-4 sm:py-7.5"
-                  >
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
-                      id="fileInput"
-                    />
-                    <div className="flex flex-col items-center justify-center space-y-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
-                        <CameraIcon size={20} />
-                      </span>
-                      <p>
-                        <span className="text-primary">Click to upload</span> or
-                        drag and drop
-                      </p>
-                      <p className="mt-1.5">SVG, PNG, JPG or GIF</p>
-                      <p>(max, 800 X 800px)</p>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end gap-4.5">
-                    <button
-                      className="flex justify-center rounded-lg border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
-                      type="button"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="flex justify-center rounded-lg bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-                      type="submit"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Saving..." : "Save"}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </DefaultLayout>
