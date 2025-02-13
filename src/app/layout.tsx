@@ -26,7 +26,7 @@ export default function RootLayout({
     key: "xiEQTw.SBJKWA:Kv7RDv6PngxN8y8ttHsOWHDQqchaEYtU9rgKefhsl7o",
   });
   return (
-    <html lang="en">
+    <html lang="en" className="custom-scrollbar">
       {/* <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script> */}
       <script src="https://unpkg.com/@rdkit/rdkit/dist/RDKit_minimal.js"></script>
       <body suppressHydrationWarning={true}>
